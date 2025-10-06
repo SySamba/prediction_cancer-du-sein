@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prédiction du Cancer du Sein - Octobre Rose</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎗️ Prédiction du Cancer du Sein - Octobre Rose</h1>
+        
+        <div class="october-rose-banner">
+            <span class="ribbon-icon">🎗️</span>
+            <span class="banner-text">Ensemble contre le cancer du sein</span>
+            <span class="ribbon-icon">🎗️</span>
+        </div>
+        
+        <section class="cancer-section">
+            <h2>🎗️ Analyse Prédictive - Octobre Rose 2025</h2>
+            <form action="/predict_cancer" method="POST" class="form-grid">
+                <!-- Les 10 champs essentiels pour la prédiction du cancer -->
+                <div class="form-group">
+                    <label for="mean_radius">Rayon moyen :</label>
+                    <input type="number" name="mean_radius" step="0.001" min="0" required>
+                    <small>Rayon moyen des cellules (en mm)</small>
+                </div>
+                <div class="form-group">
+                    <label for="mean_texture">Texture moyenne :</label>
+                    <input type="number" name="mean_texture" step="0.001" min="0" required>
+                    <small>Variation de l'intensité des niveaux de gris</small>
+                </div>
+                <div class="form-group">
+                    <label for="mean_perimeter">Périmètre moyen :</label>
+                    <input type="number" name="mean_perimeter" step="0.001" min="0" required>
+                    <small>Périmètre moyen des cellules (en mm)</small>
+                </div>
+                <div class="form-group">
+                    <label for="mean_area">Surface moyenne :</label>
+                    <input type="number" name="mean_area" step="0.001" min="0" required>
+                    <small>Surface moyenne des cellules (en mm²)</small>
+                </div>
+                <div class="form-group">
+                    <label for="mean_compactness">Compacité moyenne :</label>
+                    <input type="number" name="mean_compactness" step="0.001" min="0" max="1" required>
+                    <small>Compacité = périmètre² / surface - 1.0</small>
+                </div>
+                <div class="form-group">
+                    <label for="mean_concavity">Concavité moyenne :</label>
+                    <input type="number" name="mean_concavity" step="0.001" min="0" max="1" required>
+                    <small>Sévérité des portions concaves du contour</small>
+                </div>
+                <div class="form-group">
+                    <label for="worst_radius">Pire rayon :</label>
+                    <input type="number" name="worst_radius" step="0.001" min="0" required>
+                    <small>Plus grande valeur de rayon observée</small>
+                </div>
+                <div class="form-group">
+                    <label for="worst_texture">Pire texture :</label>
+                    <input type="number" name="worst_texture" step="0.001" min="0" required>
+                    <small>Plus grande variation de texture observée</small>
+                </div>
+                <div class="form-group">
+                    <label for="worst_perimeter">Pire périmètre :</label>
+                    <input type="number" name="worst_perimeter" step="0.001" min="0" required>
+                    <small>Plus grande valeur de périmètre observée</small>
+                </div>
+                <div class="form-group">
+                    <label for="worst_concavity">Pire concavité :</label>
+                    <input type="number" name="worst_concavity" step="0.001" min="0" max="1" required>
+                    <small>Plus grande concavité observée</small>
+                </div>
+
+                <button type="submit" class="submit-button">🎗️ Analyser - Octobre Rose</button>
+            </form>
+        </section>
+
+
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Samba SY - Tous droits réservés</p>
+            <div class="portfolio-link">
+                <span>🌐 Portfolio : </span>
+                <a href="https://sambasy.teranganumerique.com" target="_blank" rel="noopener noreferrer">
+                    sambasy.teranganumerique.com
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Agent IA Rosa Flottant -->
+    <div class="floating-chat-widget" id="floatingChat">
+        <!-- Bouton principal flottant -->
+        <div class="chat-fab" id="chatFab" onclick="toggleFloatingChat()">
+            <div class="fab-icon">🤖</div>
+            <div class="fab-pulse"></div>
+            <div class="notification-badge" id="notificationBadge">1</div>
+        </div>
+
+        <!-- Fenêtre de chat -->
+        <div class="floating-chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="agent-avatar">🤖</div>
+                    <div class="agent-details">
+                        <h4>Rosa</h4>
+                        <span class="status">🟢 En ligne</span>
+                    </div>
+                </div>
+                <button class="close-chat" onclick="toggleFloatingChat()">❌</button>
+            </div>
+            
+            <div class="floating-chat-messages" id="floatingChatMessages">
+                <div class="welcome-message">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;">
+                        <span style="font-size: 24px;">🤖</span>
+                        <strong style="color: #ad1457;">Rosa - Assistante IA Octobre Rose</strong>
+                    </div>
+                    <p style="margin: 0; font-size: 14px; color: #7b1fa2;">🎗️ Bonjour ! Je suis spécialisée dans la prévention du cancer du sein. Posez-moi vos questions !</p>
+                </div>
+                
+                <div class="suggestions-container">
+                    <div class="suggestions-title">💬 Questions fréquentes :</div>
+                    <div class="question-suggestions">
+                        <div class="suggestion-chip" onclick="askQuestion('symptômes')">🔍 Symptômes</div>
+                        <div class="suggestion-chip" onclick="askQuestion('causes')">🧬 Causes</div>
+                        <div class="suggestion-chip" onclick="askQuestion('prévention')">🛡️ Prévention</div>
+                        <div class="suggestion-chip" onclick="askQuestion('auto-examen')">🤲 Auto-examen</div>
+                        <div class="suggestion-chip" onclick="askQuestion('dépistage')">🏥 Dépistage</div>
+                        <div class="suggestion-chip" onclick="askQuestion('alimentation')">🥗 Alimentation</div>
+                        <div class="suggestion-chip" onclick="askQuestion('exercice')">🏃‍♀️ Sport</div>
+                        <div class="suggestion-chip" onclick="askQuestion('facteurs de risque')">⚠️ Facteurs de risque</div>
+                        <div class="suggestion-chip" onclick="askQuestion('octobre rose')">🎗️ Octobre Rose</div>
+                        <div class="suggestion-chip" onclick="askQuestion('statistiques')">📊 Statistiques</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="floating-chat-input">
+                <input type="text" id="floatingChatInput" placeholder="Tapez votre message..." maxlength="200">
+                <button onclick="sendFloatingMessage()" class="floating-send-btn">
+                    📤
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let floatingChatVisible = false;
+
+        function toggleFloatingChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const chatFab = document.getElementById('chatFab');
+            const badge = document.getElementById('notificationBadge');
+            
+            floatingChatVisible = !floatingChatVisible;
+            
+            if (floatingChatVisible) {
+                chatWindow.style.display = 'flex';
+                chatWindow.style.animation = 'slideUpChat 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                chatFab.style.transform = 'scale(0.9)';
+                badge.style.display = 'none';
+            } else {
+                chatWindow.style.animation = 'slideDownChat 0.3s ease-in';
+                chatFab.style.transform = 'scale(1)';
+                setTimeout(() => {
+                    chatWindow.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function sendFloatingMessage() {
+            const input = document.getElementById('floatingChatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Ajouter le message de l'utilisateur
+            addFloatingMessage(message, 'user');
+            input.value = '';
+            
+            // Ajouter un indicateur de frappe
+            addFloatingTypingIndicator();
+            
+            // Envoyer à l'IA
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                removeFloatingTypingIndicator();
+                addFloatingMessage(data.response, 'ai');
+            })
+            .catch(error => {
+                removeFloatingTypingIndicator();
+                addFloatingMessage('😔 Désolée, je ne peux pas répondre pour le moment. Veuillez réessayer.', 'ai');
+            });
+        }
+
+        function addFloatingMessage(content, sender) {
+            const messagesContainer = document.getElementById('floatingChatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            const avatar = sender === 'user' ? '👤' : '🤖';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">
+                    <p>${content.replace(/\n/g, '<br>')}</p>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Animation d'apparition
+            messageDiv.style.opacity = '0';
+            messageDiv.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                messageDiv.style.transition = 'all 0.3s ease';
+                messageDiv.style.opacity = '1';
+                messageDiv.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        function addFloatingTypingIndicator() {
+            const messagesContainer = document.getElementById('floatingChatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai-message typing-indicator';
+            typingDiv.id = 'floatingTypingIndicator';
+            
+            typingDiv.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeFloatingTypingIndicator() {
+            const typingIndicator = document.getElementById('floatingTypingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Fonction pour poser une question prédéfinie
+        function askQuestion(question) {
+            const input = document.getElementById('floatingChatInput');
+            input.value = question;
+            sendFloatingMessage();
+        }
+
+        // Envoyer message avec Entrée
+        document.getElementById('floatingChatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendFloatingMessage();
+            }
+        });
+
+        // Animation d'accueil du FAB
+        setTimeout(() => {
+            const chatFab = document.getElementById('chatFab');
+            chatFab.style.animation = 'bounceInRight 1s ease-out';
+        }, 2000);
+
+        // Effet de notification périodique
+        setInterval(() => {
+            if (!floatingChatVisible) {
+                const badge = document.getElementById('notificationBadge');
+                badge.style.animation = 'pulse 0.6s ease-in-out';
+                setTimeout(() => {
+                    badge.style.animation = '';
+                }, 600);
+            }
+        }, 10000);
+    </script>
+</body>
+</html>

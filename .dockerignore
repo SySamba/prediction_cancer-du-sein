@@ -1,0 +1,40 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pytest_cache/
+
+# Virtual envs
+.venv/
+venv/
+ENV/
+
+# VCS
+.git/
+.gitignore
+
+# OS / IDE
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Logs / temp
+*.log
+*.tmp
+*.cache/
+
+# Node (if any)
+node_modules/
+
+# Build artifacts
+build/
+dist/
+.eggs/
+*.egg-info/
+
+# Keep models if present (do NOT ignore)
+!model_breast_cancer.h5
+!model_breast_cancer.pkl
